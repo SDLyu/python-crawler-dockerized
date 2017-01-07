@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  applications:
+    image: tianon/true
+    volumes:
+      - ../data:/data
+
+  scrapy:
+    build:
+      context: ./scrapy
+    command: bash
+    volumes_from:
+        - applications
+    volumes:
+        - ../code:/code
+    restart: always
+    working_dir: /code
+    tty: true
